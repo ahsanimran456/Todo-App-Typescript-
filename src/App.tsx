@@ -1,20 +1,12 @@
-import { useContext } from "react";
+import { useState } from "react";
 import Addtodo from "./Components/Addtodo";
 import "./App.css";
-import { Todocontextprovider } from "./Context/Addcontext"; // Correct the import name
 import List from "./Components/List";
+import ActiveTask from "./Components/ActiveTask";
+import Completed from "./Components/Completed";
 
 function App() {
-  // const { TodoList } = useContext(Todocontextprovider);
-
-  // console.log(TodoList);
-
-
-  // const { TodoList } = useContext(Todocontextprovider)
-
-  // const HandleActive = () => {
-
-  // }
+  const [current, setcurrent] = useState<string>("All");
   return (
     <div className="container">
       <div className="main-container">
@@ -24,24 +16,26 @@ function App() {
           </h3>
         </div>
         <div className="nav-header">
-          <div>
+          <div onClick={() => setcurrent("All")} >
             <span>
               All
             </span>
           </div>
-          <div>
+          <div onClick={() => setcurrent("Active")}>
             <span>
               Active
             </span>
           </div>
-          <div>
+          <div onClick={() => setcurrent("Completed")}>
             <span>
               Completed
             </span>
           </div>
         </div>
-        <Addtodo />
-        <List />
+        < Addtodo />
+        {current === "All" && <List />}
+        {current === "Active" && <ActiveTask />}
+        {current === "Completed" && <Completed />}
       </div>
     </div >
   );

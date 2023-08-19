@@ -30,6 +30,7 @@ function List() {
                     {ListArray.map((items, index) => (
                         <li key={index}>
                             {items.title}
+                            <input type="checkbox" onChange={(e) => console.log(e.target.value)} />
                         </li>
                     ))}
                 </ol>
