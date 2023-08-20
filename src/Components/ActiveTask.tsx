@@ -1,5 +1,6 @@
 import { useState, useContext, useEffect } from "react";
 import { Todocontextprovider } from "../Context/AddcontextUpdated";
+import { FormCheck } from "react-bootstrap";
 
 
 type activetaskType = {
@@ -17,10 +18,14 @@ function ActiveTask() {
             setActiveTask(filterItems)
         }
     }, [todoContext]);
+    const HandleCheckbox = (e: React.ChangeEvent<HTMLInputElement>, item: activetaskType) => {
+        const Checkbox = e.target.checked;
+        todoContext?.HandleStatus(item, Checkbox);
+    };
     return (
         <div className="active-task">
             {Array.isArray(ActiveTask) && ActiveTask.length > 0 ? (
-                <ol className="mt-3 ">
+                <ul className="mt-3  ms-4 p-0">
                     {ActiveTask.map((items, index) => {
                         const createdOnDate = new Date(items.createdon); // Convert the string to a Date object
 
@@ -30,19 +35,32 @@ function ActiveTask() {
                             hour12: true
                         });
                         return (
-                            <li key={index}>
-                                <div className="d-flex justify-content-between">
-                                    <div>
-                                        {items.title}
+                            <li key={index} className="each-item mt-1">
+                                {items?.status !== "Completed" &&
+                                    <div className="each-item-inner">
+                                        <div className="each-item-first">
+                                            <FormCheck
+                                                type="checkbox"
+                                                // label={`Created at ${formattedTime}`} // Display a label for the checkbox
+                                                onChange={(e) => HandleCheckbox(e, items)}
+                                                name={items.title}
+                                                checked={items?.status === "Completed" ? true : false}
+                                            />
+                                        </div>
+                                        <div >
+                                            <span className="text-break">
+                                                {items.title}
+                                            </span>
+                                        </div>
+                                        <div>
+                                            <span className="createdAt"> {`Created at ${formattedTime}`}</span>
+                                        </div>
                                     </div>
-                                    <div>
-                                        {formattedTime}
-                                    </div>
-                                </div>
+                                }
                             </li>
                         );
                     })}
-                </ol>
+                </ul>
             ) : (
                 <div className="text-center mt-5">
                     <p>

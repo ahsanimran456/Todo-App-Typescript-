@@ -3,17 +3,37 @@ body {
   display: flex !important;
   place-items: unset !important;
   min-width: unset !important;
-  /* min-height: unset !important; */
+  min-height: unset !important;
   font-family: 'Ruwudu', serif !important;
   justify-content: center;
   align-items: center !important;
-
+  height: 100vh;
+  /* overflow: hidden; */
 }
 
 .main-container {
   width: 550px;
   box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
   padding: 10px;
+}
+
+.container-body {
+  height: 50vh;
+  overflow-y: scroll;
+
+
+  scrollbar-width: thin;
+
+  &::-webkit-scrollbar {
+    width: 3px;
+    /* Adjust the width as needed */
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: #eeee;
+    border-radius: 3px;
+  }
+
 }
 
 .nav-header {
@@ -29,8 +49,9 @@ body {
   cursor: pointer;
 }
 
-.nav-header div span {
+.nav-header div .Active {
   border-bottom: 3px solid #26aa26;
+  transition: all .1s ease-in-out 0s;
 }
 
 
@@ -41,13 +62,15 @@ body {
 .get-input input {
   width: 100%;
   border: none !important;
-  border-bottom:  1px solid #eee !important;
+  border-bottom: 1px solid #eee !important;
   padding: 3px 5px;
+  background-color: transparent;
+  color: black;
 }
 
 .get-input input:focus-visible {
   outline: none;
-  border-bottom:  1px solid #eee;
+  border-bottom: 1px solid #eee;
 }
 
 .form-btn {
@@ -60,4 +83,109 @@ body {
   background-color: #68d16bd6;
   border-radius: 5px !important;
   padding: 3px !important;
+}
+
+
+/* custom css apply  */
+.form-check-input:checked {
+  background-color: #1ce50f !important;
+  border-color: #1ce50f !important;
+}
+
+.form-check-input:focus {
+  box-shadow: 0 0 0 0.25rem rgb(13 253 131 / 25%) !important;
+}
+
+del {
+  text-decoration: line-through;
+  color: red;
+  opacity: 0.6;
+}
+
+.each-item-inner,
+.each-item-inner-completed {
+  display: flex;
+  width: 100%;
+  align-items: center;
+}
+
+.each-item-first {
+  width: 5%;
+}
+
+.each-item-inner :nth-child(2) {
+  width: 55%;
+  padding: 0px 3px;
+}
+
+.each-item-inner :nth-child(3) {
+  width: 40%;
+}
+
+.each-item {
+  background: #fafafa;
+  padding: 10px 5px;
+}
+
+.completed-title {
+  width: 60% !important;
+}
+
+.completed-time {
+  width: 40% !important;
+}
+
+
+li::marker {
+  content: "⭐";
+  margin-left: 2px !important;
+}
+
+.createdAt {
+  color: #aaa1a1;
+  font-size: 13px;
+}
+
+@media screen and (max-width:900px) {
+  .main-container {
+    width: 500px;
+  }
+}
+
+@media screen and (max-width:530px) {
+  .container {
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+  .createdAt {
+    font-size: 12px;
+  }
+
+  .main-container {
+    width: 400px;
+  }
+}
+
+@media screen and (max-width:400px) {
+  .main-container {
+    width: 340px;
+  }
+
+  .createdAt {
+    font-size: 10px;
+  }
+
+  .container {
+    padding: 0 !important;
+    margin: 0 !important;
+
+  }
+}
+
+@media screen and (max-width:400px) {
+  .main-container {
+    width: 300px;
+  }
+
 }

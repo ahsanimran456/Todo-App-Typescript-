@@ -27,7 +27,7 @@ function List() {
     return (
         <div>
             {Array.isArray(ListArray) && ListArray.length > 0 ? (
-                <ol className="mt-3">
+                <ul className="mt-3 ms-4 p-0">
                     {ListArray.map((items, index) => {
                         const createdOnDate = new Date(items.createdon);
                         const formattedTime = createdOnDate.toLocaleTimeString("en-US", {
@@ -36,19 +36,54 @@ function List() {
                             hour12: true,
                         });
                         return (
-                            <li key={index}>
-                                {items.title}
-                                <FormCheck
-                                    type="checkbox"
-                                    label={`Created at ${formattedTime}`} // Display a label for the checkbox
-                                    onChange={(e) => HandleCheckbox(e, items)}
-                                    name={items.title}
-                                    checked={items?.status === "Completed" ? true : false}
-                                />
+                            <li key={index} className="each-item mt-1">
+                                {items?.status === "Completed" ?
+                                    <div className="each-item-inner">
+                                        <div className="each-item-first">
+                                            <FormCheck
+                                                type="checkbox"
+                                                // label={`Created at ${formattedTime}`} // Display a label for the checkbox
+                                                onChange={(e) => HandleCheckbox(e, items)}
+                                                name={items.title}
+                                                checked={items?.status === "Completed" ? true : false}
+                                            />
+                                        </div>
+                                        <del>
+                                            <span className="text-break">
+                                                {items.title} <span>Completed *</span>
+                                            </span>
+                                        </del>
+                                        <div>
+                                            <span className="createdAt">{`Created at ${formattedTime}`}</span>
+                                        </div>
+
+                                    </div>
+                                    :
+                                    <div className="each-item-inner">
+                                        <div>
+                                            <span className="createdAt">{`Created at ${formattedTime}`}</span>
+                                        </div>
+                                        <div className="each-item-first">
+                                            <FormCheck
+                                                type="checkbox"
+                                                // label={`Created at ${formattedTime}`} // Display a label for the checkbox
+                                                onChange={(e) => HandleCheckbox(e, items)}
+                                                name={items.title}
+                                                checked={items?.status === "Completed" ? true : false}
+                                            />
+                                        </div>
+                                        <div>
+                                            <span className="text-break">
+                                                {items.title}
+                                            </span>
+                                        </div>
+
+                                    </div>
+                                }
                             </li>
                         );
                     })}
-                </ol>
+                </ul>
             ) : (
                 <div className="text-center mt-5">
                     <p>No work Today</p>
