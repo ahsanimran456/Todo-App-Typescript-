@@ -96,6 +96,10 @@ body {
   box-shadow: 0 0 0 0.25rem rgb(13 253 131 / 25%) !important;
 }
 
+.form-check-input:focus {
+  box-shadow: unset !important
+}
+
 del {
   text-decoration: line-through;
   color: red;
@@ -109,7 +113,60 @@ del {
   align-items: center;
 }
 
-.each-item-first {
+.each-item-inner-date {
+  width: 20%;
+  padding: 0px 3px;
+}
+
+.each-item-main {
+  width: 80%;
+  background-color: #FF7461;
+  border-radius: 20px;
+  padding: 7px 10px;
+  display: flex;
+  justify-content: space-between;
+  color: #fff;
+  font-style: italic;
+  align-items: center;
+}
+
+.each-item-main-done {
+  width: 80%;
+  background-color: #62B4FE;
+  border-radius: 20px;
+  padding: 7px 10px;
+  display: flex;
+  justify-content: space-between;
+  color: #fff;
+  font-style: italic;
+  align-items: center;
+}
+
+/* .each-item-inner :nth-child(1) {
+  width: 20%;
+  padding: 0px 3px;
+}
+
+.each-item-inner :nth-child(2) {
+  width: 80%;
+  background-color: #FF7461;
+  border-radius: 20px;
+  padding: 7px 10px;
+} */
+
+
+ul {
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+ul li {
+  padding: 0 !important;
+  margin: 0 !important;
+  list-style: none;
+}
+
+/* .each-item-first {
   width: 5%;
 }
 
@@ -120,10 +177,10 @@ del {
 
 .each-item-inner :nth-child(3) {
   width: 40%;
-}
+} */
 
 .each-item {
-  background: #fafafa;
+  /* background: #fafafa; */
   padding: 10px 5px;
 }
 
@@ -136,14 +193,14 @@ del {
 }
 
 
-li::marker {
+/* li::marker {
   content: "⭐";
   margin-left: 2px !important;
-}
+} */
 
 .createdAt {
   color: #aaa1a1;
-  font-size: 13px;
+  font-size: 16px;
 }
 
 @media screen and (max-width:900px) {
@@ -173,7 +230,7 @@ li::marker {
   }
 
   .createdAt {
-    font-size: 10px;
+    font-size: 11px;
   }
 
   .container {

@@ -20,7 +20,7 @@ function Completed() {
     return (
         <div className="active-task">
             {Array.isArray(Completed) && Completed.length > 0 ? (
-                <ul className="mt-3  ms-4 p-0 ">
+                <ul className="mt-3 ">
                     {Completed.map((items, index) => {
                         const createdOnDate = new Date(items.createdon); // Convert the string to a Date object
                         const formattedTime = createdOnDate.toLocaleTimeString("en-US", {
@@ -29,17 +29,32 @@ function Completed() {
                             hour12: true
                         });
                         return (
+                            // <li key={index} className="each-item mt-1">
+                            //     <div className="each-item-inner-completed">
+                            //         <div className="completed-title">
+                            //             <span className="text-break">
+                            //                 {items.title}
+                            //             </span>
+                            //         </div>
+                            //         <div className="completed-time">
+                            //             <span className="createdAt">
+                            //                 {`Created at ${formattedTime}`}
+                            //             </span>
+                            //         </div>
+                            //     </div>
+                            // </li>
                             <li key={index} className="each-item mt-1">
-                                <div className="each-item-inner-completed">
-                                    <div className="completed-title">
-                                        <span className="text-break">
-                                            {items.title}
-                                        </span>
+                                <div className="each-item-inner">
+                                    <div className="each-item-inner-date">
+                                        <span className="createdAt">{formattedTime}</span>
                                     </div>
-                                    <div className="completed-time">
-                                        <span className="createdAt">
-                                            {`Created at ${formattedTime}`}
-                                        </span>
+                                    <div className="each-item-main-done">
+                                        <div className="text-center">
+                                            {/* <img src={logo} style={{ width: "53px", height: "30px" }} alt="" /> */}
+                                            <span className="text-break text-center">
+                                                {items.title}
+                                            </span>
+                                        </div>
                                     </div>
                                 </div>
                             </li>
