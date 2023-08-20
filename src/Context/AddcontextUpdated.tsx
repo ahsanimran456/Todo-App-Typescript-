@@ -10,6 +10,7 @@ type TodoType = {
 type TodoContextType = {
     TodoList: TodoType[];
     handleAddProduct: (newProduct: TodoType) => void;
+    HandleStatus: (item: TodoType, Checkbox: boolean) => void;
 };
 type contextprovider = {
     children: React.ReactNode
@@ -26,15 +27,26 @@ export const useTodoContext = () => {
 
 const TodoContext = ({ children }: contextprovider) => {
     const [TodoList, setTodoList] = useState<TodoType[]>([]);
-    console.log(TodoList,"list");
+    console.log(TodoList, "list");
 
-    const handleAddProduct = (newProduct: TodoType) => {
+    const handleAddProduct = (newProduct: TodoType,) => {
         setTodoList(prevList => [...prevList, newProduct]);
     };
+    const HandleStatus = (items: TodoType, Checkbox: boolean) => {
+        const itemIndex = TodoList.findIndex(item => item.id === items.id);
+
+        if (itemIndex !== -1) {
+            const updatedItems = [...TodoList];
+            console.log(itemIndex);
+            updatedItems[itemIndex] = { ...updatedItems[itemIndex], status: Checkbox ? "Completed" : "pending" };
+            setTodoList(updatedItems);
+        }
+    }
 
     const contextValue = {
         TodoList,
-        handleAddProduct
+        handleAddProduct,
+        HandleStatus
     };
 
     return (
